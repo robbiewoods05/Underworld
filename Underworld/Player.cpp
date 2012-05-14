@@ -5,19 +5,32 @@ void Player::init(Player &player)
 {
 	player.lives = 3;
 	player.speed = 5; 
-	player.x = 20;
-	player.y = 480 / 2;
+	player.x = 0;
+	player.y = 440;
 	player.score = 0;
+	player.jumping = false; 
+	player.gravity = 0.2f;
+	player.jumpVelocity = 2;
 }
 void Player::draw(Player &player)
 {
-	al_draw_filled_rectangle(player.x, player.y - 20, player.x + 20, player.y - 18, al_map_rgb(255, 0, 255));
+	al_draw_filled_rectangle(player.x, player.y, player.x + 40, player.y + 40,  al_map_rgb(255, 0, 255));
 }
-void Player::moveUp(Player &player) 
+void Player::jump(Player &player) 
 {
-	player.y -= player.speed;
-	if (player.y < 0)
-		player.y = 0;
+	player.jumping = true; 
+
+	if (jumping)
+	{
+		player.y -= player.jumpVelocity;
+		player.jumpVelocity -= player.gravity; 
+	}
+
+	if(!jumping)
+	{
+		player.y = 440; 
+		player.jumpVelocity = 2;
+	}
 }
 void Player::moveDown(Player &player) 
 {

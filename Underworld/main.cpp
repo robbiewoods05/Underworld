@@ -58,7 +58,7 @@ int main(void)
 		if (ev.type == ALLEGRO_EVENT_TIMER) 
 		{
 			if(keys[UP])
-				player.moveUp(player);
+				player.jump(player);
 			if(keys[DOWN])
 				player.moveDown(player);
 			if(keys[LEFT])
@@ -113,16 +113,15 @@ int main(void)
 				}
 
 		}
-	}
 
-	if(redraw && al_is_event_queue_empty(event_queue))
-	{
-		player.draw(player);
-		al_flip_display();
-		al_clear_to_color(al_map_rgb(0, 0, 0));
+		if(redraw && al_is_event_queue_empty(event_queue))
+		{
+			player.draw(player);
+			al_flip_display();
+			al_clear_to_color(al_map_rgb(0, 0, 0));
+		}
 	}
-	
-    
+ 
      
 	al_destroy_display(display); 
 	al_destroy_event_queue(event_queue);
