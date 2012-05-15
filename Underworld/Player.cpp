@@ -8,8 +8,9 @@ Player::Player()
 	x = 0;
 	y = 440;
 	score = 0;
-	jumping = false; 
-	gravity = 2;
+	jumping = false;
+	gravityDefault = 5.0f; /* Raise this for higher jumps */
+	gravity = gravityDefault;
 	jumpVelocity = 0.2f;
 }
 void Player::draw()
@@ -23,9 +24,9 @@ void Player::update()
 		gravity -= jumpVelocity;
 		y -= gravity;
 
-		if(y > 440) {
-			y = 440;
-			gravity = 2;
+		if(y > FLOOR_LEVEL) {
+			y = FLOOR_LEVEL;
+			gravity = gravityDefault;
 			jumping = false;
 		}
 	}

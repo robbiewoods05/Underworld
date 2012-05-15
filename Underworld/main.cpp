@@ -1,6 +1,6 @@
 #include <iostream>
 #include <allegro5/allegro5.h>
-#include <allegro5/allegro_native_dialog.h>
+//#include <allegro5/allegro_native_dialog.h>
 #include <allegro5/allegro_primitives.h>
 #include "Player.h"
 
@@ -21,7 +21,7 @@ int main(void)
     
     if (!al_init()) 
 	{
-        al_show_native_message_box(NULL, "Error", "Error", "Failed to initialise Allegro", NULL, ALLEGRO_MESSAGEBOX_ERROR);
+        //al_show_native_message_box(NULL, "Error", "Error", "Failed to initialise Allegro", NULL, ALLEGRO_MESSAGEBOX_ERROR);
 		std::cout << "Failed to initialise Allegro"; 
 		return -1;
 	}
@@ -30,7 +30,7 @@ int main(void)
 
 	if (!display) 
 	{
-		al_show_native_message_box(NULL, "Error", "Error", "Failed to create display!", NULL, ALLEGRO_MESSAGEBOX_ERROR);
+		//al_show_native_message_box(NULL, "Error", "Error", "Failed to create display!", NULL, ALLEGRO_MESSAGEBOX_ERROR);
 		std::cout << "Failed to create display";
 		return -1; 
 	}

@@ -1,11 +1,12 @@
 #pragma once
+#define FLOOR_LEVEL 440
+
 class Player
 {
 	public:
-
 		int x, y, lives, speed, score;
 		bool jumping;
-		float gravity, jumpVelocity;
+		float gravityDefault, gravity, jumpVelocity;
 
 		Player();
 		void draw();
