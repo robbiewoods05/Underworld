@@ -42,8 +42,6 @@ int main(void)
 	event_queue = al_create_event_queue(); 
 	timer = al_create_timer(1.0 / FPS); 
 
-	player.init(player);
-
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
 	al_register_event_source(event_queue, al_get_timer_event_source(timer));
 	al_register_event_source(event_queue, al_get_display_event_source(display));
@@ -55,16 +53,18 @@ int main(void)
 		ALLEGRO_EVENT ev; 
 		al_wait_for_event(event_queue, &ev); 
 
+		player.update();
+
 		if (ev.type == ALLEGRO_EVENT_TIMER) 
 		{
-			if(keys[UP])
-				player.jump(player);
+			if(keys[UP] && player.jumping == false)
+				player.jumping = true;
 			if(keys[DOWN])
-				player.moveDown(player);
+				player.moveDown();
 			if(keys[LEFT])
-				player.moveLeft(player);
+				player.moveLeft();
 			if(keys[RIGHT])
-				player.moveRight(player);
+				player.moveRight();
 		}
 		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) 
 		{
@@ -116,7 +116,7 @@ int main(void)
 
 		if(redraw && al_is_event_queue_empty(event_queue))
 		{
-			player.draw(player);
+			player.draw();
 			al_flip_display();
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 		}

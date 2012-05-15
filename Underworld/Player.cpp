@@ -1,53 +1,51 @@
 #include "Player.h"
-#include <allegro5\allegro_primitives.h>
+#include <allegro5/allegro_primitives.h>
 
-void Player::init(Player &player)
+Player::Player()
 {
-	player.lives = 3;
-	player.speed = 5; 
-	player.x = 0;
-	player.y = 440;
-	player.score = 0;
-	player.jumping = false; 
-	player.gravity = 0.2f;
-	player.jumpVelocity = 2;
+	lives = 3;
+	speed = 5; 
+	x = 0;
+	y = 440;
+	score = 0;
+	jumping = false; 
+	gravity = 2;
+	jumpVelocity = 0.2f;
 }
-void Player::draw(Player &player)
+void Player::draw()
 {
-	al_draw_filled_rectangle(player.x, player.y, player.x + 40, player.y + 40,  al_map_rgb(255, 0, 255));
+	al_draw_filled_rectangle(x, y, x + 40, y + 40,  al_map_rgb(255, 0, 255));
 }
-void Player::jump(Player &player) 
+void Player::update() 
 {
-	player.jumping = true; 
 
-	if (jumping)
-	{
-		player.y -= player.jumpVelocity;
-		player.jumpVelocity -= player.gravity; 
-	}
+	if (jumping) {
+		gravity -= jumpVelocity;
+		y -= gravity;
 
-	if(!jumping)
-	{
-		player.y = 440; 
-		player.jumpVelocity = 2;
+		if(y > 440) {
+			y = 440;
+			gravity = 2;
+			jumping = false;
+		}
 	}
 }
-void Player::moveDown(Player &player) 
+void Player::moveDown() 
 {
-	player.y += player.speed; 
-	if (player.y > 480) 
-		player.y = 480; 
+	y += speed; 
+	if (y > 480) 
+		y = 480; 
 }
-void Player::moveLeft(Player &player)
+void Player::moveLeft()
 {
-	player.x -= player.speed; 
-	if (player.x < 0)
-		player.x = 0;
+	x -= speed; 
+	if (x < 0)
+		x = 0;
 }
-void Player::moveRight(Player &player)
+void Player::moveRight()
 {
-	player.x += player.speed; 
-	if (player.x > 640)
-		player.x = 640; 
+	x += speed; 
+	if (x > 640)
+		x = 640; 
 
 }
