@@ -1,12 +1,12 @@
+#include "main.h"
 #include "Player.h"
-#include <allegro5/allegro_primitives.h>
 
 Player::Player()
 {
 	lives = 3;
 	speed = 5; 
 	x = 0;
-	y = 440;
+	y = (HEIGHT - 40);
 	score = 0;
 	jumping = false;
 	gravityDefault = 5.0f; /* Raise this for higher jumps */
@@ -19,34 +19,33 @@ void Player::draw()
 }
 void Player::update() 
 {
-
 	if (jumping) {
 		gravity -= jumpVelocity;
 		y -= gravity;
 
-		if(y > FLOOR_LEVEL) {
-			y = FLOOR_LEVEL;
+		if(y > (HEIGHT- 40)) {
+			y = (HEIGHT - 40);
 			gravity = gravityDefault;
 			jumping = false;
 		}
 	}
 }
-void Player::moveDown() 
+void Player::moveDown()
 {
-	y += speed; 
-	if (y > 480) 
-		y = 480; 
+	y = (HEIGHT - 40);
+
 }
 void Player::moveLeft()
 {
-	x -= speed; 
-	if (x < 0)
+	if (x > 0)
+		x -= speed;
+	else
 		x = 0;
 }
 void Player::moveRight()
 {
-	x += speed; 
-	if (x > 640)
-		x = 640; 
-
+	if (x < (WIDTH - 40))
+		x += speed;
+	else
+		x = (WIDTH - 40);
 }

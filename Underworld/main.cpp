@@ -1,12 +1,8 @@
-#include <iostream>
-#include <allegro5/allegro5.h>
-//#include <allegro5/allegro_native_dialog.h>
-#include <allegro5/allegro_primitives.h>
+#include "main.h"
 #include "Player.h"
 
 int main(void)
 {
-	const int WIDTH = 640, HEIGHT = 480, FPS = 60;
 	bool keys[5] = { false, false, false, false, false }; 
 	enum KEYS { UP, DOWN, LEFT, RIGHT, SPACE }; 
 
@@ -15,13 +11,13 @@ int main(void)
     Player player;
 
 	ALLEGRO_DISPLAY *display = NULL;
-    ALLEGRO_EVENT_QUEUE *event_queue = NULL;
+    	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL; 
 
     
     if (!al_init()) 
 	{
-        //al_show_native_message_box(NULL, "Error", "Error", "Failed to initialise Allegro", NULL, ALLEGRO_MESSAGEBOX_ERROR);
+       		al_show_native_message_box(NULL, "Error", "Error", "Failed to initialise Allegro", NULL, ALLEGRO_MESSAGEBOX_ERROR);
 		std::cout << "Failed to initialise Allegro"; 
 		return -1;
 	}
@@ -30,7 +26,7 @@ int main(void)
 
 	if (!display) 
 	{
-		//al_show_native_message_box(NULL, "Error", "Error", "Failed to create display!", NULL, ALLEGRO_MESSAGEBOX_ERROR);
+		al_show_native_message_box(NULL, "Error", "Error", "Failed to create display!", NULL, ALLEGRO_MESSAGEBOX_ERROR);
 		std::cout << "Failed to create display";
 		return -1; 
 	}
